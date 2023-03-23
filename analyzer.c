@@ -123,11 +123,31 @@ int analyzer()
 	//Number judge
 	else if (isDigit(ch))
 	{
+		if (ch == '0')
+		{
+			Concat(ch);
+			ch = getChar('f');
+			if (ch == 'x' || ch == 'X')
+			{
+				Concat(ch);
+				ch = getChar('f');
+				while (isDigit(ch)||(ch>='a'&&ch<='f')||(ch>='A'&&ch<='F'))
+				{
+					Concat(ch);
+					ch = getChar('f');
+				}
+				retrack();
+				return _number_encode;
+			}
+		}
 		_Bool getDotFlag = false;
-		while (isDigit(ch) || (ch == '.' && !getDotFlag))
+		_Bool getFloatFlag = false;
+		while (isDigit(ch) || (ch == '.' && !getDotFlag&&!getFloatFlag)||((ch=='e'||ch=='E')&&!getFloatFlag))
 		{
 			if (ch == '.')
 				getDotFlag = true;
+			else if (ch == 'e' || ch == 'E')
+				getFloatFlag = true;
 			Concat(ch);
 			ch = getChar('f');
 		}
