@@ -6,7 +6,7 @@ enum NUM_ID_encoding
 	_identifier_encode=_not+1
 };
 
-enum wordType 
+enum tokenType 
 { 
 	_keywords,
 	_number,
